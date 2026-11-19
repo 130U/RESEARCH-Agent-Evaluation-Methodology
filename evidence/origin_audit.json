@@ -1,0 +1,288 @@
+{
+ "what": "Every assistant-role message of the study's 18 completed development runs bound to its producer, and the opening message under three system prompts on 12 tasks.",
+ "tau2_commit": "2174a603f6d014ef94473ffa95957f6ce27100db",
+ "model": "gpt-5.6-sol",
+ "reasoning_effort": "low",
+ "runs": {
+  "completed": 18,
+  "distinct_tasks": 12
+ },
+ "assistant_messages": 181,
+ "origin": {
+  "framework_seed": 18,
+  "model_agent": 163
+ },
+ "model_tool_call_messages": 100,
+ "call_ledger": {
+  "agent": 163,
+  "user_simulator": 81,
+  "assertion_judge": 4
+ },
+ "initialization_control": {
+  "tasks": 12,
+  "system_prompts": 3,
+  "initializations": 36,
+  "tasks_with_identical_opening_under_all_prompts": 12,
+  "model_calls": 0,
+  "prompts": {
+   "unmodified": null,
+   "seed_strategy": "Follow the retail policy. Help the authenticated customer complete their request using the available tools, and accurately communicate the outcome.",
+   "authenticate_first": "At the start of the conversation, request the user’s account email before giving a general greeting."
+  },
+  "rows": [
+   {
+    "task_id": "0",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "0",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "0",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "22",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "22",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "22",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "24",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "24",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "24",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "34",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "34",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "34",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "48",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "48",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "48",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "59",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "59",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "59",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "73",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "73",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "73",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "75",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "75",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "75",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "76",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "76",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "76",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "81",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "81",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "81",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "84",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "84",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "84",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "85",
+    "prompt": "unmodified",
+    "prompt_changed_from_base": false,
+    "system_prompt_sha256": "3384b6e52d9395d9d8369777f4e06f423a8a801447ef3b58ad8897b56105f04b",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "85",
+    "prompt": "seed_strategy",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "67a34df7bf3a0bbb72652fb87fad382bb6c710c06cd3e9a9128a50deaab43485",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   },
+   {
+    "task_id": "85",
+    "prompt": "authenticate_first",
+    "prompt_changed_from_base": true,
+    "system_prompt_sha256": "0d020ff3653b1eb94c2a2146508552ab6338941e36efae09a5eca8901e952ac6",
+    "opening_trajectory_sha256": "a60d684934934c6506078e5b9fa142506f8da6c50c90499ae37ca98afe4cf2af"
+   }
+  ]
+ },
+ "orchestrator_sha256": "ff6c2631a02b68a3341b1ca3d9a6122bb43ab872ee6acc960379c78015eca420"
+}

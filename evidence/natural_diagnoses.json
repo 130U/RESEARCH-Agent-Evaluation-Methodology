@@ -1,0 +1,342 @@
+{
+ "what": "Every agent diagnosis the benchmark's own reviewer produced on 18 completed development runs, the reference labels fixed before the gate ran, and the gate's decision on each.",
+ "tau2_commit": "2174a603f6d014ef94473ffa95957f6ce27100db",
+ "model": "gpt-5.6-sol",
+ "reasoning_effort": "low",
+ "runs_reviewed": 18,
+ "distinct_tasks": 12,
+ "runs_with_a_diagnosis": 6,
+ "diagnoses": 8,
+ "reference_labels": {
+  "assigned_by": "two independent model reviewers, with adjudication of their disagreements",
+  "fixed_before_gate": true,
+  "criteria": [
+   "claim_support",
+   "agent_responsibility",
+   "correction_observability"
+  ],
+  "criterion_judgements_agreed": 20,
+  "criterion_judgements_total": 24,
+  "combined_rule": "supported if all three criteria are supported; unsupported if any is unsupported; otherwise insufficient",
+  "combined_counts": {
+   "insufficient": 6,
+   "unsupported": 2,
+   "supported": 0
+  }
+ },
+ "gate_counts": {
+  "abstain": 2,
+  "reject": 5,
+  "accept": 1
+ },
+ "cross_tab": [
+  {
+   "combined_label": "insufficient",
+   "gate_decision": "abstain",
+   "count": 2
+  },
+  {
+   "combined_label": "insufficient",
+   "gate_decision": "accept",
+   "count": 1
+  },
+  {
+   "combined_label": "insufficient",
+   "gate_decision": "reject",
+   "count": 3
+  },
+  {
+   "combined_label": "unsupported",
+   "gate_decision": "reject",
+   "count": 2
+  }
+ ],
+ "usage": {
+  "review": {
+   "calls": 18,
+   "input_tokens": 284840,
+   "output_tokens": 6894
+  },
+  "gate": {
+   "calls": 8,
+   "input_tokens": 130049,
+   "output_tokens": 4315
+  }
+ },
+ "accepted_diagnosis_origin": {
+  "id": "D0003",
+  "task_id": "81",
+  "turn_idx": 0,
+  "action_excerpt": "Hi! How can I help you today?",
+  "origin": "framework_seed",
+  "gate_reason_excerpt": "The actor controlled that response",
+  "first_generated_agent_turn": 2,
+  "source": "https://github.com/sierra-research/tau2-bench/blob/2174a603f6d014ef94473ffa95957f6ce27100db/src/tau2/orchestrator/orchestrator.py#L626"
+ },
+ "rows": [
+  {
+   "id": "D0001",
+   "task_id": "85",
+   "turn_idx": 8,
+   "action_excerpt": "Which order contains the Fleece Jacket?",
+   "reviewer_claim": "After authentication, the agent had access to the user's five order IDs and could inspect the orders to determine which one contained the Fleece Jacket. Instead, it asked the user to identify the order even though the scenario did not provide the user with that information. This prevented the exchange workflow from continuing and directly led to the out-of-scope termination.",
+   "reviewer_correction": "The agent should have queried the user's orders one at a time, identified the order containing the Fleece Jacket, checked whether it was pending or delivered, and then continued the appropriate modification or exchange workflow, collecting all required details and confirmation before updating the order.",
+   "reference_labels": {
+    "reviewer_a": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "reviewer_b": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "final": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "combined": "insufficient"
+   },
+   "gate": {
+    "decision": "abstain",
+    "claim_supported": null,
+    "agent_responsible": null,
+    "correction_observable": true,
+    "reason": "The visible facts made the proposed order-by-order lookup feasible, and it would comply with the one-call-at-a-time rule. However, the policy permits helping look up an order ID but does not explicitly require the agent to inspect every listed order instead of asking the authenticated user which order applies. The claim that this question prevented continuation and directly caused a later out-of-scope termination depends on later events not available at the indexed action, so fault and responsibility are not established from the visible prefix."
+   }
+  },
+  {
+   "id": "D0002",
+   "task_id": "85",
+   "turn_idx": 8,
+   "action_excerpt": "Which order ID contains the Fleece Jacket you want to exchange?",
+   "reviewer_claim": "After authenticating Yusuf and retrieving his profile, the agent had access to the list of his order IDs and could help identify which order contained the Fleece Jacket. Instead, it required the user to supply an order ID that was not provided in the User Instructions. This prevented the simulator from continuing and directly led to the unsuccessful termination.",
+   "reviewer_correction": "The agent should have inspected Yusuf's listed orders one at a time using the available order-information tool(s), identified the order containing the Fleece Jacket, checked its status and item details, and then continued gathering the exchange and payment details required by policy.",
+   "reference_labels": {
+    "reviewer_a": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "reviewer_b": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "final": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "combined": "insufficient"
+   },
+   "gate": {
+    "decision": "reject",
+    "claim_supported": false,
+    "agent_responsible": false,
+    "correction_observable": true,
+    "reason": "The visible facts make the proposed order-by-order lookup feasible, but no visible rule requires the agent to perform it instead of asking the authenticated user for the order ID. The claim that the question prevented continuation and directly caused an unsuccessful termination depends on later simulator events that are not available in the prefix, so fault is not established."
+   }
+  },
+  {
+   "id": "D0003",
+   "task_id": "81",
+   "turn_idx": 0,
+   "action_excerpt": "Hi! How can I help you today?",
+   "reviewer_claim": "The policy requires authentication at the beginning of the conversation, but the agent first asked how it could help rather than initiating authentication. Authentication was completed shortly afterward, so this did not itself determine the outcome.",
+   "reviewer_correction": "Begin by requesting the account email, or the customer's name and ZIP code, before handling the request.",
+   "reference_labels": {
+    "reviewer_a": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "reviewer_b": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "final": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "combined": "insufficient"
+   },
+   "gate": {
+    "decision": "accept",
+    "claim_supported": true,
+    "agent_responsible": true,
+    "correction_observable": true,
+    "reason": "The indexed action opened with a generic offer of help instead of initiating the explicitly required authentication. The actor controlled that response, and requesting the user's email or name plus ZIP was directly prescribed by the visible policy."
+   }
+  },
+  {
+   "id": "D0004",
+   "task_id": "81",
+   "turn_idx": 6,
+   "action_excerpt": "Please provide the order ID, including the leading # symbol, and identify the items you no longer need.",
+   "reviewer_claim": "After authenticating James, the agent asked him for an order ID that was not supplied in the User Instructions. The policy explicitly allows the agent to provide information about the authenticated user's orders and help look up an order ID. It should have retrieved James's orders and identified the pending orders containing the named items. Requiring unavailable information left the simulator unable to continue and prevented the expected cancellations.",
+   "reviewer_correction": "Use the authenticated user ID to look up the customer's orders, inspect their statuses and items, identify the relevant pending orders, and then collect the permitted cancellation reason and explicit confirmation before cancelling each applicable order.",
+   "reference_labels": {
+    "reviewer_a": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "reviewer_b": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "final": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "combined": "insufficient"
+   },
+   "gate": {
+    "decision": "reject",
+    "claim_supported": false,
+    "agent_responsible": false,
+    "correction_observable": true,
+    "reason": "The visible policy permits helping look up an order ID but does not require proactive lookup, and the user never said the order ID was unavailable. Asking for it therefore did not violate an explicit rule or request. The proposed lookup was available using the authenticated user ID and get_user_details, but the claim that the actor was required to choose it is unsupported."
+   }
+  },
+  {
+   "id": "D0005",
+   "task_id": "59",
+   "turn_idx": 10,
+   "action_excerpt": "get_user_details",
+   "reviewer_claim": "The user had already been authenticated, both orders had been confirmed to belong to the authenticated user, and the order records contained the payment information needed for the requested tasks. Retrieving the full user profile was unnecessary and did not advance the cancellation or address change.",
+   "reviewer_correction": "After retrieving both order records, the agent should have proceeded using those results without calling get_user_details.",
+   "reference_labels": {
+    "reviewer_a": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "reviewer_b": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "final": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "combined": "insufficient"
+   },
+   "gate": {
+    "decision": "reject",
+    "claim_supported": false,
+    "agent_responsible": false,
+    "correction_observable": true,
+    "reason": "The visible order results already establish ownership, pending status, totals, and payment method, so skipping get_user_details was an observable option. However, the policy does not prohibit an arguably unnecessary profile lookup; it expressly permits profile information after authentication, and the indexed action obeyed the one-tool-call rule. Thus the proposed inefficiency is not a supported policy or explicit-request violation attributable to the actor."
+   }
+  },
+  {
+   "id": "D0006",
+   "task_id": "59",
+   "turn_idx": 12,
+   "action_excerpt": "Please tell me which order is the older one and choose its cancellation reason:",
+   "reviewer_claim": "The agent established that the available records could not identify the older order, explain the status difference, or support the requested five-day processing guarantee. The customer’s conditional cancellation therefore could not be completed without information unavailable to the agent. Under the policy, a request that cannot be handled within the agent’s capabilities must be transferred to a human. Instead, the agent asked the user to supply which order was older, information the user’s instructions did not provide, causing the interaction to end out of scope before either requested database update was completed.",
+   "reviewer_correction": "The agent should have transferred the customer by first calling transfer_to_human_agents and then sending exactly 'YOU ARE BEING TRANSFERRED TO A HUMAN AGENT. PLEASE HOLD ON.' A human could resolve the unavailable order-age and processing information while preserving the address-change request.",
+   "reference_labels": {
+    "reviewer_a": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "reviewer_b": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "supported"
+    },
+    "final": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "combined": "insufficient"
+   },
+   "gate": {
+    "decision": "abstain",
+    "claim_supported": null,
+    "agent_responsible": null,
+    "correction_observable": null,
+    "reason": "The visible records do not identify the older order, but it is ambiguous whether this makes the request outside the agent’s capabilities or merely requires clarification from the user, especially because the policy also requires a specific cancellation reason that the user had not supplied. Nothing in the visible prefix establishes that a human could access the missing placement or processing information. Therefore the claimed mandatory transfer, actor fault, and proposed correction are not fully observable."
+   }
+  },
+  {
+   "id": "D0007",
+   "task_id": "76",
+   "turn_idx": 24,
+   "action_excerpt": "for the reason “no longer needed,”",
+   "reviewer_claim": "The agent proposed cancelling order #W8367380 for ‘no longer needed,’ even though the user’s stated reason for the fleece-jacket cancellation was that it was ordered by mistake. The user corrected the reason before the cancellation, so this did not affect the final outcome.",
+   "reviewer_correction": "The agent should have requested confirmation to cancel #W8367380 for ‘ordered by mistake,’ while separately using ‘no longer needed’ only for the skateboard order if the requested variant was unavailable.",
+   "reference_labels": {
+    "reviewer_a": {
+     "claim_support": "unsupported",
+     "agent_responsibility": "unsupported",
+     "correction_observability": "insufficient"
+    },
+    "reviewer_b": {
+     "claim_support": "unsupported",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "final": {
+     "claim_support": "unsupported",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "combined": "unsupported"
+   },
+   "gate": {
+    "decision": "reject",
+    "claim_supported": false,
+    "agent_responsible": true,
+    "correction_observable": false,
+    "reason": "The actor wrongly applied “no longer needed,” which the user linked to the conditional skateboard cancellation, to the fleece order. However, the diagnosis is demonstrably false in claiming that the user stated or corrected the fleece cancellation reason to “ordered by mistake”; no such statement appears in the visible prefix. The observable correction was to ask the user for the fleece-order cancellation reason, not to assume “ordered by mistake.”"
+   }
+  },
+  {
+   "id": "D0008",
+   "task_id": "76",
+   "turn_idx": 22,
+   "action_excerpt": "transfer_to_human_agents",
+   "reviewer_claim": "The agent transferred the user even though the requests remained within the retail agent's supported scope. Removing an individual item was not permitted, but the user's instructed fallback was to cancel order #W8367380 for 'ordered by mistake'; likewise, the agent should have elicited the desired skateboard specifications, checked whether the requested variant was available, and, if modification was impossible, pursued cancellation of #W1242543 for 'no longer needed.' The agent also calculated the grill total as $1,939.05 but never communicated it to the user. The unsupported transfer ended the interaction without obtaining confirmation or completing either cancellation and without satisfying the required price assertion.",
+   "reviewer_correction": "The agent should have told the user that individual-item removal was unavailable and asked for explicit confirmation to cancel #W8367380 for 'ordered by mistake.' It should also have asked for the skateboard's desired specifications, checked the corresponding product variants, and either completed the modification after collecting all required details and confirmation or asked for confirmation to cancel #W1242543 for 'no longer needed' if the requested variant was unavailable. It should have directly told the user that all prior grill purchases totaled $1,939.05, and it should not have transferred the conversation.",
+   "reference_labels": {
+    "reviewer_a": {
+     "claim_support": "insufficient",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "reviewer_b": {
+     "claim_support": "unsupported",
+     "agent_responsibility": "unsupported",
+     "correction_observability": "insufficient"
+    },
+    "final": {
+     "claim_support": "unsupported",
+     "agent_responsibility": "insufficient",
+     "correction_observability": "insufficient"
+    },
+    "combined": "unsupported"
+   },
+   "gate": {
+    "decision": "reject",
+    "claim_supported": false,
+    "agent_responsible": false,
+    "correction_observable": false,
+    "reason": "The transfer was supported because removing an individual item is outside the available pending-order modifications. The user did not request cancellation of either entire order or supply the proposed skateboard cancellation reason, so those corrections were not observable from the prefix. The indexed action also does not establish that the interaction ended or that the computed total would never be communicated."
+   }
+  }
+ ]
+}

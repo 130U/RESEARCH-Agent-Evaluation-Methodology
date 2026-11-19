@@ -1,0 +1,752 @@
+{
+ "what": "One reflective optimization round per arm on tau2-bench retail with GEPA, the validation of the candidate it produced, and the final test of the selected strategies.",
+ "tau2_commit": "2174a603f6d014ef94473ffa95957f6ce27100db",
+ "gepa_commit": "15ee314f9c7d34ec153b809d401f42f55c4dcd76",
+ "model": "gpt-5.6-sol",
+ "reasoning_effort": "low",
+ "arms": {
+  "seed": "the seed strategy, not optimized",
+  "native": "GEPA reflecting on the reviewer's diagnoses",
+  "admitted": "GEPA reflecting on admitted diagnoses only"
+ },
+ "splits": {
+  "train": [
+   "76",
+   "0"
+  ],
+  "validation": [
+   "16",
+   "19"
+  ],
+  "test": [
+   "36",
+   "40",
+   "62",
+   "68",
+   "77",
+   "79"
+  ]
+ },
+ "optimizer": {
+  "proposals_per_arm": 1,
+  "acceptance_criterion": "strict_improvement",
+  "skip_perfect_score": false,
+  "max_strategy_chars": 6000
+ },
+ "optimization": {
+  "completion": {
+   "admitted": {
+    "endpoint": "candidate_rejected",
+    "optimizer_iterations": 1,
+    "generated_candidates": 1,
+    "accepted_by_optimizer_on_training": 0,
+    "rejected_by_optimizer_on_training": 1,
+    "metric_calls": 6
+   },
+   "native": {
+    "endpoint": "candidate_accepted_best_seed",
+    "optimizer_iterations": 1,
+    "generated_candidates": 1,
+    "accepted_by_optimizer_on_training": 1,
+    "rejected_by_optimizer_on_training": 0,
+    "metric_calls": 8
+   }
+  },
+  "strategies_executed": {
+   "admitted": [
+    {
+     "sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+     "text": "Follow the retail policy. Help the authenticated customer complete their request using the available tools, and accurately communicate the outcome."
+    },
+    {
+     "sha256": "310df62649acc3e6dfeb2ac6be06d1f9eec8f4faccd272570ee372abbb7124b1",
+     "text": "Follow the retail policy exactly and treat tool results as the sole source of record-specific facts.\n\n1. Authenticate before disclosing information or handling requests: locate the user ID using either email or name plus ZIP code, even if the user supplies an ID. Serve only that authenticated user throughout the conversation; deny requests involving another user.\n2. Clarify the customer’s complete request and gather only the information required by policy. For order actions, retrieve the order, verify ownership and current status, and distinguish product IDs from variant item IDs.\n3. Check eligibility before proposing an action: cancellation and permitted modifications require a pending order; returns and exchanges require a delivered order. Enforce allowed reasons, payment/refund rules, availability, same-product variant constraints, gift-card balance requirements, and all other action-specific conditions.\n4. For item modification or exchange, collect every requested item change before proceeding because the relevant tool can be used only once per order. Remind the customer to confirm that the list is complete and explain any irreversible consequence stated by policy.\n5. Before every database-changing action, present a precise summary of all action details and ask for explicit confirmation. Do not treat ambiguity, earlier intent, or anything short of an explicit “yes” to that summary as authorization. If details change, present the revised summary and reconfirm.\n6. After confirmation, make exactly the applicable tool call, no more than one tool call per turn. Never combine a tool call with a user-facing response in the same turn. Report success only when supported by the tool result, including policy-defined refund timing or next steps when applicable; otherwise state the uncertainty or failure accurately.\n7. Do not invent facts, procedures, availability, outcomes, or subjective recommendations. Deny requests prohibited by policy. Transfer to a human if and only if the request cannot be handled within the available scope: call the transfer tool first, then send exactly the required transfer message in the following turn."
+    }
+   ],
+   "native": [
+    {
+     "sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+     "text": "Follow the retail policy. Help the authenticated customer complete their request using the available tools, and accurately communicate the outcome."
+    },
+    {
+     "sha256": "ceb59e13696b68a088d8cdfd8158ebd27bfc687d2ee22a0af0c81c6d8af6e2b1",
+     "text": "Follow the retail policy exactly and manage the conversation as a complete workflow:\n\n1. Authenticate the customer first using an allowed lookup method, even if they provide a user ID. Serve only that authenticated customer throughout the conversation.\n2. Decompose multi-part requests into a checklist and keep every part active until it is completed, denied under policy, or genuinely requires transfer.\n3. Gather evidence with one tool call per turn: inspect the customer’s profile, orders, products, variants, availability, payment methods, and prices as needed. Distinguish product IDs from item IDs, verify order status and ownership, and calculate requested totals from tool data without guessing.\n4. For each request, pursue every supported path and any user-stated fallback. Do not treat an unsupported preferred operation as making the whole request unsupported when a permitted alternative—such as canceling an eligible pending order—can satisfy the customer.\n5. Before any database-changing action, validate all eligibility and required inputs. For modify or exchange actions, collect the complete set of item changes because the tool may be usable only once per order; remind the customer to include every desired item. Validate replacement variants, payment/refund methods, and gift-card balances where applicable.\n6. Present the exact action details and consequences, then obtain an explicit “yes” before making the update. A prior request or conditional preference is not confirmation. After confirmation, call only the appropriate tool and report its actual result accurately.\n7. Continue through all requests from the same customer, including informational calculations, rather than stopping after one action or obstacle. Do not invent facts, procedures, recommendations, or outcomes.\n8. Deny requests prohibited by policy. Transfer only when the remaining request truly cannot be handled within the permitted actions after supported options and stated fallbacks have been exhausted; follow the mandated transfer sequence and wording exactly.\n9. Maintain the interaction constraint: make at most one tool call at a time, and never combine a tool call with a user-facing response in the same turn."
+    }
+   ]
+  },
+  "episode_judgements": [
+   {
+    "arm": "admitted",
+    "task_id": "16",
+    "strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 251366,
+    "output_tokens": 1583
+   },
+   {
+    "arm": "admitted",
+    "task_id": "19",
+    "strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+    "official_reward": 0.0,
+    "structural_status": "fail",
+    "semantic_status": "fail",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 204782,
+    "output_tokens": 1571
+   },
+   {
+    "arm": "admitted",
+    "task_id": "76",
+    "strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 372775,
+    "output_tokens": 2456
+   },
+   {
+    "arm": "admitted",
+    "task_id": "0",
+    "strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 198707,
+    "output_tokens": 1433
+   },
+   {
+    "arm": "admitted",
+    "task_id": "76",
+    "strategy_sha256": "310df62649acc3e6dfeb2ac6be06d1f9eec8f4faccd272570ee372abbb7124b1",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 318317,
+    "output_tokens": 2166
+   },
+   {
+    "arm": "admitted",
+    "task_id": "0",
+    "strategy_sha256": "310df62649acc3e6dfeb2ac6be06d1f9eec8f4faccd272570ee372abbb7124b1",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 220451,
+    "output_tokens": 1537
+   },
+   {
+    "arm": "native",
+    "task_id": "16",
+    "strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 251423,
+    "output_tokens": 1598
+   },
+   {
+    "arm": "native",
+    "task_id": "19",
+    "strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 216622,
+    "output_tokens": 1483
+   },
+   {
+    "arm": "native",
+    "task_id": "76",
+    "strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+    "official_reward": 0.0,
+    "structural_status": "fail",
+    "semantic_status": "fail",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 114418,
+    "output_tokens": 678
+   },
+   {
+    "arm": "native",
+    "task_id": "0",
+    "strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 198875,
+    "output_tokens": 1478
+   },
+   {
+    "arm": "native",
+    "task_id": "76",
+    "strategy_sha256": "ceb59e13696b68a088d8cdfd8158ebd27bfc687d2ee22a0af0c81c6d8af6e2b1",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 350054,
+    "output_tokens": 2542
+   },
+   {
+    "arm": "native",
+    "task_id": "0",
+    "strategy_sha256": "ceb59e13696b68a088d8cdfd8158ebd27bfc687d2ee22a0af0c81c6d8af6e2b1",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 220676,
+    "output_tokens": 1619
+   },
+   {
+    "arm": "native",
+    "task_id": "16",
+    "strategy_sha256": "ceb59e13696b68a088d8cdfd8158ebd27bfc687d2ee22a0af0c81c6d8af6e2b1",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "fail",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 256367,
+    "output_tokens": 1588
+   },
+   {
+    "arm": "native",
+    "task_id": "19",
+    "strategy_sha256": "ceb59e13696b68a088d8cdfd8158ebd27bfc687d2ee22a0af0c81c6d8af6e2b1",
+    "official_reward": 1.0,
+    "structural_status": "pass",
+    "semantic_status": "pass",
+    "user_validity": "pass",
+    "critical_violation": false,
+    "input_tokens": 249691,
+    "output_tokens": 1902
+   }
+  ],
+  "usage": {
+   "native": {
+    "calls": 131,
+    "input_tokens": 1938309,
+    "output_tokens": 14766
+   },
+   "admitted": {
+    "calls": 109,
+    "input_tokens": 1650855,
+    "output_tokens": 12261
+   }
+  }
+ },
+ "selection": {
+  "seed": {
+   "decision": "fixed_baseline",
+   "reasons": [],
+   "final_strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961"
+  },
+  "admitted": {
+   "decision": "keep_seed",
+   "reasons": [
+    "optimizer_did_not_select_new_candidate",
+    "candidate_text_unchanged",
+    "candidate_validation_incomplete",
+    "qualified_count_not_strictly_higher",
+    "baseline_qualified_task_regressed_or_unresolved",
+    "validation_token_cost_unknown"
+   ],
+   "final_strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961"
+  },
+  "native": {
+   "decision": "keep_seed",
+   "reasons": [
+    "optimizer_did_not_select_new_candidate",
+    "qualified_count_not_strictly_higher",
+    "baseline_qualified_task_regressed_or_unresolved"
+   ],
+   "final_strategy_sha256": "86aa62048c4845c3564aba229035c6bab5cbe20057b36108abbb5c8407ac0961"
+  }
+ },
+ "seed_strategy": "Follow the retail policy. Help the authenticated customer complete their request using the available tools, and accurately communicate the outcome.",
+ "final_test": {
+  "planned_units": 36,
+  "tasks": 6,
+  "repetitions": 2,
+  "units": [
+   {
+    "unit": 1,
+    "arm": "seed",
+    "task_id": "36",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 13,
+    "input_tokens": 171563,
+    "output_tokens": 844
+   },
+   {
+    "unit": 2,
+    "arm": "native",
+    "task_id": "36",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 11,
+    "input_tokens": 139122,
+    "output_tokens": 775
+   },
+   {
+    "unit": 3,
+    "arm": "admitted",
+    "task_id": "36",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 13,
+    "input_tokens": 171734,
+    "output_tokens": 941
+   },
+   {
+    "unit": 4,
+    "arm": "native",
+    "task_id": "40",
+    "simulation_seed": 103,
+    "official": "success",
+    "qualification": "success",
+    "critical_violation": false,
+    "calls": 14,
+    "input_tokens": 183513,
+    "output_tokens": 1013
+   },
+   {
+    "unit": 5,
+    "arm": "admitted",
+    "task_id": "40",
+    "simulation_seed": 103,
+    "official": "success",
+    "qualification": "success",
+    "critical_violation": false,
+    "calls": 12,
+    "input_tokens": 157844,
+    "output_tokens": 973
+   },
+   {
+    "unit": 6,
+    "arm": "seed",
+    "task_id": "40",
+    "simulation_seed": 103,
+    "official": "success",
+    "qualification": "success",
+    "critical_violation": false,
+    "calls": 14,
+    "input_tokens": 183782,
+    "output_tokens": 1043
+   },
+   {
+    "unit": 7,
+    "arm": "admitted",
+    "task_id": "62",
+    "simulation_seed": 103,
+    "official": "success",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 19,
+    "input_tokens": 255291,
+    "output_tokens": 1674
+   },
+   {
+    "unit": 8,
+    "arm": "seed",
+    "task_id": "62",
+    "simulation_seed": 103,
+    "official": "success",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 19,
+    "input_tokens": 251442,
+    "output_tokens": 1385
+   },
+   {
+    "unit": 9,
+    "arm": "native",
+    "task_id": "62",
+    "simulation_seed": 103,
+    "official": "success",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 16,
+    "input_tokens": 218875,
+    "output_tokens": 1420
+   },
+   {
+    "unit": 10,
+    "arm": "seed",
+    "task_id": "68",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 15,
+    "input_tokens": 205755,
+    "output_tokens": 1122
+   },
+   {
+    "unit": 11,
+    "arm": "native",
+    "task_id": "68",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 15,
+    "input_tokens": 205875,
+    "output_tokens": 1139
+   },
+   {
+    "unit": 12,
+    "arm": "admitted",
+    "task_id": "68",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 15,
+    "input_tokens": 205560,
+    "output_tokens": 1035
+   },
+   {
+    "unit": 13,
+    "arm": "native",
+    "task_id": "77",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 12,
+    "input_tokens": 161445,
+    "output_tokens": 780
+   },
+   {
+    "unit": 14,
+    "arm": "admitted",
+    "task_id": "77",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 12,
+    "input_tokens": 161388,
+    "output_tokens": 866
+   },
+   {
+    "unit": 15,
+    "arm": "seed",
+    "task_id": "77",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "failure",
+    "critical_violation": false,
+    "calls": 12,
+    "input_tokens": 161408,
+    "output_tokens": 777
+   },
+   {
+    "unit": 16,
+    "arm": "admitted",
+    "task_id": "79",
+    "simulation_seed": 103,
+    "official": "failure",
+    "qualification": "unknown",
+    "critical_violation": null,
+    "calls": 17,
+    "input_tokens": 234190,
+    "output_tokens": 1589
+   },
+   {
+    "unit": 17,
+    "arm": "seed",
+    "task_id": "79",
+    "simulation_seed": 103,
+    "official": "success",
+    "qualification": "success",
+    "critical_violation": false,
+    "calls": 16,
+    "input_tokens": 232524,
+    "output_tokens": 1864
+   },
+   {
+    "unit": 18,
+    "arm": "native",
+    "task_id": "79",
+    "simulation_seed": 103,
+    "official": "success",
+    "qualification": "success",
+    "critical_violation": false,
+    "calls": 20,
+    "input_tokens": 283936,
+    "output_tokens": 1927
+   },
+   {
+    "unit": 19,
+    "arm": "native",
+    "task_id": "79",
+    "simulation_seed": 107,
+    "official": "interrupted",
+    "qualification": "interrupted",
+    "critical_violation": null,
+    "calls": 8,
+    "input_tokens": 103970,
+    "output_tokens": 550
+   },
+   {
+    "unit": 20,
+    "arm": "admitted",
+    "task_id": "79",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 21,
+    "arm": "seed",
+    "task_id": "79",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 22,
+    "arm": "admitted",
+    "task_id": "77",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 23,
+    "arm": "seed",
+    "task_id": "77",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 24,
+    "arm": "native",
+    "task_id": "77",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 25,
+    "arm": "seed",
+    "task_id": "68",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 26,
+    "arm": "native",
+    "task_id": "68",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 27,
+    "arm": "admitted",
+    "task_id": "68",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 28,
+    "arm": "native",
+    "task_id": "62",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 29,
+    "arm": "admitted",
+    "task_id": "62",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 30,
+    "arm": "seed",
+    "task_id": "62",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 31,
+    "arm": "admitted",
+    "task_id": "40",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 32,
+    "arm": "seed",
+    "task_id": "40",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 33,
+    "arm": "native",
+    "task_id": "40",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 34,
+    "arm": "seed",
+    "task_id": "36",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 35,
+    "arm": "native",
+    "task_id": "36",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   },
+   {
+    "unit": 36,
+    "arm": "admitted",
+    "task_id": "36",
+    "simulation_seed": 107,
+    "official": "not_run",
+    "qualification": "not_run",
+    "critical_violation": null,
+    "calls": null,
+    "input_tokens": null,
+    "output_tokens": null
+   }
+  ],
+  "usage": {
+   "seed": {
+    "calls": 89,
+    "input_tokens": 1206474,
+    "output_tokens": 7035
+   },
+   "native": {
+    "calls": 96,
+    "input_tokens": 1296736,
+    "output_tokens": 7604
+   },
+   "admitted": {
+    "calls": 88,
+    "input_tokens": 1186007,
+    "output_tokens": 7078
+   }
+  },
+  "review": "two independent model reviewers; a disagreement leaves the unit unknown",
+  "review_disagreements": [
+   {
+    "unit": 16,
+    "field": "critical_violation"
+   }
+  ]
+ }
+}

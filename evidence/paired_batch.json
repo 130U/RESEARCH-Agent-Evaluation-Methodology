@@ -1,0 +1,153 @@
+{
+ "what": "The first batch of the paired study: four parent episodes on the seed strategy, the reviewer's diagnoses and the gate's decisions. The batch ended the study under its validity rule: in task 76 the simulated user departed from its own instructions.",
+ "tau2_commit": "2174a603f6d014ef94473ffa95957f6ce27100db",
+ "gepa_commit": "15ee314f9c7d34ec153b809d401f42f55c4dcd76",
+ "model": "gpt-5.6-sol",
+ "reasoning_effort": "low",
+ "planned": {
+  "parent_episodes": 16,
+  "optimization_episodes": 120
+ },
+ "completed": {
+  "parent_episodes": 4
+ },
+ "episodes": [
+  {
+   "task_id": "0",
+   "simulation_seed": 211,
+   "official_reward": 1.0,
+   "structural_status": "pass",
+   "status": "qualified",
+   "reviews": [
+    {
+     "reviewer": "reviewer_a",
+     "semantic_status": "pass",
+     "user_validity": "pass",
+     "critical_violation": false,
+     "user_departed_from_instructions": false
+    },
+    {
+     "reviewer": "reviewer_b",
+     "semantic_status": "pass",
+     "user_validity": "pass",
+     "critical_violation": false,
+     "user_departed_from_instructions": false
+    }
+   ],
+   "input_tokens": 198766,
+   "output_tokens": 1475
+  },
+  {
+   "task_id": "34",
+   "simulation_seed": 211,
+   "official_reward": 0.0,
+   "structural_status": "fail",
+   "status": "fail",
+   "reviews": [
+    {
+     "reviewer": "reviewer_a",
+     "semantic_status": "fail",
+     "user_validity": "pass",
+     "critical_violation": false,
+     "user_departed_from_instructions": false
+    },
+    {
+     "reviewer": "reviewer_b",
+     "semantic_status": "fail",
+     "user_validity": "pass",
+     "critical_violation": false,
+     "user_departed_from_instructions": false
+    }
+   ],
+   "input_tokens": 120759,
+   "output_tokens": 780
+  },
+  {
+   "task_id": "59",
+   "simulation_seed": 211,
+   "official_reward": 0.0,
+   "structural_status": "fail",
+   "status": "fail",
+   "reviews": [
+    {
+     "reviewer": "reviewer_a",
+     "semantic_status": "fail",
+     "user_validity": "pass",
+     "critical_violation": false,
+     "user_departed_from_instructions": false
+    },
+    {
+     "reviewer": "reviewer_b",
+     "semantic_status": "fail",
+     "user_validity": "pass",
+     "critical_violation": false,
+     "user_departed_from_instructions": false
+    }
+   ],
+   "input_tokens": 133537,
+   "output_tokens": 1694
+  },
+  {
+   "task_id": "76",
+   "simulation_seed": 211,
+   "official_reward": 0.0,
+   "structural_status": "fail",
+   "status": "fail",
+   "reviews": [
+    {
+     "reviewer": "reviewer_a",
+     "semantic_status": "fail",
+     "user_validity": "fail",
+     "critical_violation": false,
+     "user_departed_from_instructions": true
+    },
+    {
+     "reviewer": "reviewer_b",
+     "semantic_status": "fail",
+     "user_validity": "fail",
+     "critical_violation": false,
+     "user_departed_from_instructions": true
+    }
+   ],
+   "input_tokens": 341423,
+   "output_tokens": 2209
+  }
+ ],
+ "reviewer_diagnoses": [
+  {
+   "task_id": "0",
+   "agent_diagnoses": 0,
+   "user_departed_from_instructions": false
+  },
+  {
+   "task_id": "34",
+   "agent_diagnoses": 1,
+   "user_departed_from_instructions": false
+  },
+  {
+   "task_id": "59",
+   "agent_diagnoses": 1,
+   "user_departed_from_instructions": false
+  },
+  {
+   "task_id": "76",
+   "agent_diagnoses": 2,
+   "user_departed_from_instructions": true
+  }
+ ],
+ "gate_decisions": [
+  {
+   "task_id": "34",
+   "decision": "reject"
+  },
+  {
+   "task_id": "59",
+   "decision": "reject"
+  }
+ ],
+ "usage": {
+  "calls": 61,
+  "input_tokens": 893326,
+  "output_tokens": 9586
+ }
+}

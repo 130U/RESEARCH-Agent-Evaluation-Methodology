@@ -1,0 +1,98 @@
+{
+  "source": {
+    "repository": "sierra-research/tau2-bench",
+    "commit": "2174a603f6d014ef94473ffa95957f6ce27100db",
+    "directory": "data/tau2/results/final"
+  },
+  "files": [
+    {
+      "file": "claude-3-7-sonnet-20250219_retail_default_gpt-4.1-2025-04-14_4trials.json",
+      "git_blob_sha1": "1b0e345db5bd9ae5cecfc70ff399f590be70c4f8",
+      "bytes": 24908843,
+      "agent_model": "claude-3-7-sonnet-20250219",
+      "assistant_messages": 6743,
+      "first_own_action_is_authentication": 456,
+      "framework_seed": 456,
+      "model_agent": 6287,
+      "model_tool_call_messages": 3591,
+      "route:continue_semantic_review": 6287,
+      "route:route_to_harness_or_non_agent_review": 456,
+      "runs": 456,
+      "runs_opening_with_framework_message": 456,
+      "tasks": 114
+    },
+    {
+      "file": "gpt-4.1-2025-04-14_retail_default_gpt-4.1-2025-04-14_4trials.json",
+      "git_blob_sha1": "b30d695834f16ddbb114e254e9fc35376d819f6b",
+      "bytes": 22044059,
+      "agent_model": "gpt-4.1-2025-04-14",
+      "assistant_messages": 5560,
+      "first_own_action_is_authentication": 452,
+      "framework_seed": 456,
+      "model_agent": 5104,
+      "model_tool_call_messages": 2482,
+      "route:continue_semantic_review": 5104,
+      "route:route_to_harness_or_non_agent_review": 456,
+      "runs": 456,
+      "runs_opening_with_framework_message": 456,
+      "tasks": 114
+    },
+    {
+      "file": "gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json",
+      "git_blob_sha1": "8a55836aa5e9ed735c9900c0e357b1dd80f71c28",
+      "bytes": 23697012,
+      "agent_model": "gpt-4.1-mini-2025-04-14",
+      "assistant_messages": 6124,
+      "first_own_action_is_authentication": 444,
+      "framework_seed": 456,
+      "model_agent": 5668,
+      "model_tool_call_messages": 2558,
+      "route:continue_semantic_review": 5668,
+      "route:route_to_harness_or_non_agent_review": 456,
+      "runs": 456,
+      "runs_opening_with_framework_message": 456,
+      "tasks": 114
+    },
+    {
+      "file": "o4-mini-2025-04-16_retail_default_gpt-4.1-2025-04-14_4trials.json",
+      "git_blob_sha1": "bfd1be3546169e95d47f49c8b6fdf59e93a20188",
+      "bytes": 22066527,
+      "agent_model": "o4-mini-2025-04-16",
+      "assistant_messages": 6409,
+      "first_own_action_is_authentication": 449,
+      "framework_seed": 456,
+      "model_agent": 5953,
+      "model_tool_call_messages": 3132,
+      "route:continue_semantic_review": 5953,
+      "route:route_to_harness_or_non_agent_review": 456,
+      "runs": 456,
+      "runs_opening_with_framework_message": 456,
+      "tasks": 114
+    }
+  ],
+  "total": {
+    "assistant_messages": 24836,
+    "first_own_action_is_authentication": 1801,
+    "framework_seed": 1824,
+    "model_agent": 23012,
+    "model_tool_call_messages": 11763,
+    "route:continue_semantic_review": 23012,
+    "route:route_to_harness_or_non_agent_review": 1824,
+    "runs": 1824,
+    "runs_opening_with_framework_message": 1824
+  },
+  "framework_share_of_assistant_messages": 0.0734417780641005,
+  "distinct_framework_texts": {
+    "Hi! How can I help you today?": 1824
+  },
+  "first_generated_agent_turn": {
+    "2": 1824
+  },
+  "task_62_probe": {
+    "runs": 16,
+    "official_reward_1": 13,
+    "agent_named_the_poem": 10,
+    "agent_named_the_poem_and_official_reward_1": 9
+  },
+  "model_calls": 0
+}

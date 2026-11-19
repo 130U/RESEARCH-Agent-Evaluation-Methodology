@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: software
+title: "Agent Evaluation Methodology: Intervention-Constrained Feedback Admission"
+version: "V_202611"
+date-released: 2026-11-19
+abstract: "What must be true of a diagnosis before it is allowed to change an agent? The article, its PDF, full derivations, the gate code and a script that recomputes every figure."
+authors:
+  - family-names: Ouyang
+    given-names: "Letao (Theodore)"
+repository-code: "https://github.com/130U/RESEARCH-Agent-Evaluation-Methodology"
+url: "https://github.com/130U/RESEARCH-Agent-Evaluation-Methodology/blob/main/paper/paper.pdf"
+keywords:
+  - "agent evaluation"
+  - "LLM evaluation"
+  - "prompt optimization"
+  - "failure attribution"
+  - "τ²-bench"
+  - "GEPA"
+references:
+  - type: software
+    title: "τ²-bench"
+    authors:
+      - name: "Sierra Research"
+    repository-code: "https://github.com/sierra-research/tau2-bench"
+    commit: "2174a603f6d014ef94473ffa95957f6ce27100db"
+  - type: software
+    title: "GEPA"
+    authors:
+      - name: "Lakshya A Agrawal"
+    repository-code: "https://github.com/gepa-ai/gepa"
+    commit: "15ee314f9c7d34ec153b809d401f42f55c4dcd76"
+preferred-citation:
+  type: article
+  title: "Agent Evaluation Methodology: Intervention-Constrained Feedback Admission"
+  authors:
+    - family-names: Ouyang
+      given-names: "Letao (Theodore)"
+  year: 2026
+  url: "https://github.com/130U/RESEARCH-Agent-Evaluation-Methodology/blob/main/paper/paper.pdf"
